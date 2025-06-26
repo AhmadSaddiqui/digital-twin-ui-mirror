@@ -1,8 +1,10 @@
 
 import { useState } from "react";
-import { Settings as SettingsIcon, Bell, Shield, Palette, Moon, Sun } from "lucide-react";
+import { Settings as SettingsIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import NotificationSettings from "@/components/settings/NotificationSettings";
+import PrivacySettings from "@/components/settings/PrivacySettings";
+import AppearanceSettings from "@/components/settings/AppearanceSettings";
 
 const Settings = () => {
   const [settings, setSettings] = useState({
@@ -21,30 +23,45 @@ const Settings = () => {
     }
   });
 
-  const handleToggle = (category: string, setting: string) => {
+  const handleNotificationToggle = (setting: string) => {
     setSettings(prev => ({
       ...prev,
-      [category]: {
-        ...(prev as any)[category],
-        [setting]: !(prev as any)[category][setting]
+      notifications: {
+        ...prev.notifications,
+        [setting]: !(prev.notifications as any)[setting]
       }
     }));
   };
 
-  const ToggleSwitch = ({ checked, onChange }: { checked: boolean; onChange: () => void }) => (
-    <button
-      onClick={onChange}
-      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-        checked ? 'bg-[hsl(var(--accent-coral))]' : 'bg-gray-300'
-      }`}
-    >
-      <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-          checked ? 'translate-x-6' : 'translate-x-1'
-        }`}
-      />
-    </button>
-  );
+  const handlePrivacyToggle = (setting: string) => {
+    setSettings(prev => ({
+      ...prev,
+      privacy: {
+        ...prev.privacy,
+        [setting]: !(prev.privacy as any)[setting]
+      }
+    }));
+  };
+
+  const handleThemeChange = (theme: string) => {
+    setSettings(prev => ({
+      ...prev,
+      appearance: {
+        ...prev.appearance,
+        theme
+      }
+    }));
+  };
+
+  const handleFontSizeChange = (fontSize: string) => {
+    setSettings(prev => ({
+      ...prev,
+      appearance: {
+        ...prev.appearance,
+        fontSize
+      }
+    }));
+  };
 
   return (
     <div className="min-h-screen warm-gradient">
@@ -62,134 +79,21 @@ const Settings = () => {
           </div>
 
           <div className="space-y-6">
-            {/* Notifications */}
-            <Card className="glass-effect border-white/30">
-              <CardHeader>
-                <div className="flex items-center">
-                  <Bell className="h-5 w-5 text-[hsl(var(--accent-coral))] mr-2" />
-                  <h2 className="text-xl font-semibold text-[hsl(var(--sage-text))]">Notifications</h2>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-medium text-[hsl(var(--sage-text))]">Email Notifications</h3>
-                    <p className="text-sm text-[hsl(var(--sage-light))]">Receive updates and reminders via email</p>
-                  </div>
-                  <ToggleSwitch
-                    checked={settings.notifications.email}
-                    onChange={() => handleToggle('notifications', 'email')}
-                  />
-                </div>
+            <NotificationSettings
+              settings={settings.notifications}
+              onToggle={handleNotificationToggle}
+            />
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-medium text-[hsl(var(--sage-text))]">Push Notifications</h3>
-                    <p className="text-sm text-[hsl(var(--sage-light))]">Get instant notifications on your device</p>
-                  </div>
-                  <ToggleSwitch
-                    checked={settings.notifications.push}
-                    onChange={() => handleToggle('notifications', 'push')}
-                  />
-                </div>
+            <PrivacySettings
+              settings={settings.privacy}
+              onToggle={handlePrivacyToggle}
+            />
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-medium text-[hsl(var(--sage-text))]">Task Reminders</h3>
-                    <p className="text-sm text-[hsl(var(--sage-light))]">Remind me about upcoming tasks</p>
-                  </div>
-                  <ToggleSwitch
-                    checked={settings.notifications.reminders}
-                    onChange={() => handleToggle('notifications', 'reminders')}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Privacy */}
-            <Card className="glass-effect border-white/30">
-              <CardHeader>
-                <div className="flex items-center">
-                  <Shield className="h-5 w-5 text-[hsl(var(--accent-teal))] mr-2" />
-                  <h2 className="text-xl font-semibold text-[hsl(var(--sage-text))]">Privacy & Security</h2>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-medium text-[hsl(var(--sage-text))]">Public Profile</h3>
-                    <p className="text-sm text-[hsl(var(--sage-light))]">Make your profile visible to other users</p>
-                  </div>
-                  <ToggleSwitch
-                    checked={settings.privacy.profileVisible}
-                    onChange={() => handleToggle('privacy', 'profileVisible')}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-medium text-[hsl(var(--sage-text))]">Share Analytics</h3>
-                    <p className="text-sm text-[hsl(var(--sage-light))]">Help improve our service with usage data</p>
-                  </div>
-                  <ToggleSwitch
-                    checked={settings.privacy.shareAnalytics}
-                    onChange={() => handleToggle('privacy', 'shareAnalytics')}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Appearance */}
-            <Card className="glass-effect border-white/30">
-              <CardHeader>
-                <div className="flex items-center">
-                  <Palette className="h-5 w-5 text-[hsl(var(--accent-coral))] mr-2" />
-                  <h2 className="text-xl font-semibold text-[hsl(var(--sage-text))]">Appearance</h2>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="font-medium text-[hsl(var(--sage-text))] mb-3">Theme</h3>
-                  <div className="flex space-x-4">
-                    <button
-                      onClick={() => setSettings(prev => ({ ...prev, appearance: { ...prev.appearance, theme: 'light' } }))}
-                      className={`flex items-center space-x-2 px-4 py-2 rounded-lg border-2 transition-all ${
-                        settings.appearance.theme === 'light'
-                          ? 'border-[hsl(var(--accent-coral))] bg-[hsl(var(--accent-coral))]/10'
-                          : 'border-white/30 bg-white/20'
-                      }`}
-                    >
-                      <Sun className="h-4 w-4" />
-                      <span className="text-[hsl(var(--sage-text))]">Light</span>
-                    </button>
-                    <button
-                      onClick={() => setSettings(prev => ({ ...prev, appearance: { ...prev.appearance, theme: 'dark' } }))}
-                      className={`flex items-center space-x-2 px-4 py-2 rounded-lg border-2 transition-all ${
-                        settings.appearance.theme === 'dark'
-                          ? 'border-[hsl(var(--accent-coral))] bg-[hsl(var(--accent-coral))]/10'
-                          : 'border-white/30 bg-white/20'
-                      }`}
-                    >
-                      <Moon className="h-4 w-4" />
-                      <span className="text-[hsl(var(--sage-text))]">Dark</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="font-medium text-[hsl(var(--sage-text))] mb-3">Font Size</h3>
-                  <select
-                    value={settings.appearance.fontSize}
-                    onChange={(e) => setSettings(prev => ({ ...prev, appearance: { ...prev.appearance, fontSize: e.target.value } }))}
-                    className="px-3 py-2 rounded-md bg-white/80 border border-white/30 text-[hsl(var(--sage-text))]"
-                  >
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                  </select>
-                </div>
-              </CardContent>
-            </Card>
+            <AppearanceSettings
+              settings={settings.appearance}
+              onThemeChange={handleThemeChange}
+              onFontSizeChange={handleFontSizeChange}
+            />
 
             {/* Action Buttons */}
             <div className="flex space-x-4 pt-6">
