@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern warm color scheme */
+/* Modern cool color scheme */
 
 @layer base {
   :root {
@@ -37,15 +37,15 @@
 
     --radius: 0.75rem;
 
-    /* Updated warm color palette */
-    --warm-bg: 43 84% 88%;
-    --warm-light: 44 87% 94%;
-    --warm-medium: 42 78% 82%;
-    --warm-dark: 41 72% 75%;
-    --sage-text: 160 25% 25%;
-    --sage-light: 158 20% 40%;
-    --accent-coral: 15 85% 68%;
-    --accent-teal: 174 65% 45%;
+    /* Updated cool color palette */
+    --warm-bg: 215 28% 92%;
+    --warm-light: 220 32% 96%;
+    --warm-medium: 215 25% 85%;
+    --warm-dark: 215 22% 78%;
+    --sage-text: 215 25% 25%;
+    --sage-light: 215 20% 40%;
+    --accent-coral: 195 85% 65%;
+    --accent-teal: 175 70% 45%;
   }
 }
 
