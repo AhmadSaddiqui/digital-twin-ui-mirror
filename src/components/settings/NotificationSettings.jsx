@@ -3,16 +3,7 @@ import { Bell } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ToggleSwitch from "./ToggleSwitch";
 
-interface NotificationSettingsProps {
-  settings: {
-    email: boolean;
-    push: boolean;
-    reminders: boolean;
-  };
-  onToggle: (setting: string) => void;
-}
-
-const NotificationSettings = ({ settings, onToggle }: NotificationSettingsProps) => {
+const NotificationSettings = ({ settings, onToggle }) => {
   return (
     <Card className="glass-effect border-white/30">
       <CardHeader>
@@ -25,7 +16,7 @@ const NotificationSettings = ({ settings, onToggle }: NotificationSettingsProps)
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-medium text-[hsl(var(--sage-text))]">Email Notifications</h3>
-            <p className="text-sm text-[hsl(var(--sage-light))]">Receive updates and reminders via email</p>
+            <p className="text-sm text-[hsl(var(--sage-light))]">Receive updates via email</p>
           </div>
           <ToggleSwitch
             checked={settings.email}
@@ -36,7 +27,7 @@ const NotificationSettings = ({ settings, onToggle }: NotificationSettingsProps)
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-medium text-[hsl(var(--sage-text))]">Push Notifications</h3>
-            <p className="text-sm text-[hsl(var(--sage-light))]">Get instant notifications on your device</p>
+            <p className="text-sm text-[hsl(var(--sage-light))]">Get notified on your device</p>
           </div>
           <ToggleSwitch
             checked={settings.push}
@@ -47,7 +38,7 @@ const NotificationSettings = ({ settings, onToggle }: NotificationSettingsProps)
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-medium text-[hsl(var(--sage-text))]">Task Reminders</h3>
-            <p className="text-sm text-[hsl(var(--sage-light))]">Remind me about upcoming tasks</p>
+            <p className="text-sm text-[hsl(var(--sage-light))]">Reminders for upcoming tasks</p>
           </div>
           <ToggleSwitch
             checked={settings.reminders}

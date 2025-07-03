@@ -3,15 +3,7 @@ import { Shield } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ToggleSwitch from "./ToggleSwitch";
 
-interface PrivacySettingsProps {
-  settings: {
-    profileVisible: boolean;
-    shareAnalytics: boolean;
-  };
-  onToggle: (setting: string) => void;
-}
-
-const PrivacySettings = ({ settings, onToggle }: PrivacySettingsProps) => {
+const PrivacySettings = ({ settings, onToggle }) => {
   return (
     <Card className="glass-effect border-white/30">
       <CardHeader>

@@ -30,7 +30,6 @@ const Home = () => {
           </div>
         </div>
         
-        {/* Feature Cards */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <Link to="/notes" className="glass-effect rounded-2xl p-8 card-hover block">
             <div className="text-center">
@@ -49,7 +48,6 @@ const Home = () => {
           </Link>
         </div>
         
-        {/* Bear illustration */}
         <div className="flex justify-center">
           <div className="glass-effect rounded-2xl p-8 w-64 h-64 flex items-center justify-center">
             <div className="text-center">

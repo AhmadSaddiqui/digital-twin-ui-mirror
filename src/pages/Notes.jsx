@@ -7,14 +7,13 @@ import { Input } from "@/components/ui/input";
 const Notes = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [newTag, setNewTag] = useState("");
-  const [selectedNote, setSelectedNote] = useState<string | null>(null);
+  const [selectedNote, setSelectedNote] = useState(null);
 
   const tags = ["#work", "#personal", "#ideas"];
 
   return (
     <div className="min-h-screen warm-gradient">
       <div className="flex h-screen">
-        {/* Sidebar */}
         <div className="w-80 bg-white/70 backdrop-blur-sm border-r border-white/30 p-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-[hsl(var(--sage-text))] flex items-center">
@@ -24,7 +23,6 @@ const Notes = () => {
             <Moon className="h-5 w-5 text-[hsl(var(--sage-light))]" />
           </div>
 
-          {/* Search */}
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[hsl(var(--sage-light))]" />
             <Input
@@ -35,13 +33,11 @@ const Notes = () => {
             />
           </div>
 
-          {/* New Note Button */}
           <Button className="w-full mb-6 bg-[hsl(var(--accent-coral))] hover:bg-[hsl(var(--accent-coral))]/90 text-white">
             <Plus className="h-4 w-4 mr-2" />
             New Note
           </Button>
 
-          {/* Add Tag */}
           <div className="flex mb-4">
             <Input
               placeholder="Add tag"
@@ -57,7 +53,6 @@ const Notes = () => {
             </Button>
           </div>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
             {tags.map((tag) => (
               <span
@@ -69,13 +64,11 @@ const Notes = () => {
             ))}
           </div>
 
-          {/* Notes List */}
           <div className="text-[hsl(var(--sage-light))] text-sm">
             No notes found
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center glass-effect rounded-2xl p-12 max-w-md">
             <h3 className="text-2xl font-semibold text-[hsl(var(--sage-text))] mb-4">

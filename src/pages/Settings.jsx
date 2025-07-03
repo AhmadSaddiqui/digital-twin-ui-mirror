@@ -23,27 +23,27 @@ const Settings = () => {
     }
   });
 
-  const handleNotificationToggle = (setting: string) => {
+  const handleNotificationToggle = (setting) => {
     setSettings(prev => ({
       ...prev,
       notifications: {
         ...prev.notifications,
-        [setting]: !(prev.notifications as any)[setting]
+        [setting]: !prev.notifications[setting]
       }
     }));
   };
 
-  const handlePrivacyToggle = (setting: string) => {
+  const handlePrivacyToggle = (setting) => {
     setSettings(prev => ({
       ...prev,
       privacy: {
         ...prev.privacy,
-        [setting]: !(prev.privacy as any)[setting]
+        [setting]: !prev.privacy[setting]
       }
     }));
   };
 
-  const handleThemeChange = (theme: string) => {
+  const handleThemeChange = (theme) => {
     setSettings(prev => ({
       ...prev,
       appearance: {
@@ -53,7 +53,7 @@ const Settings = () => {
     }));
   };
 
-  const handleFontSizeChange = (fontSize: string) => {
+  const handleFontSizeChange = (fontSize) => {
     setSettings(prev => ({
       ...prev,
       appearance: {
@@ -67,7 +67,6 @@ const Settings = () => {
     <div className="min-h-screen warm-gradient">
       <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="glass-effect rounded-3xl p-8">
-          {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
               <SettingsIcon className="h-8 w-8 text-[hsl(var(--accent-coral))] mr-3" />
@@ -95,7 +94,6 @@ const Settings = () => {
               onFontSizeChange={handleFontSizeChange}
             />
 
-            {/* Action Buttons */}
             <div className="flex space-x-4 pt-6">
               <Button className="bg-[hsl(var(--accent-coral))] hover:bg-[hsl(var(--accent-coral))]/90 text-white">
                 Save Changes

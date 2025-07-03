@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 
 const ToDo = () => {
   const [newTask, setNewTask] = useState("");
-  const [tasks, setTasks] = useState<Array<{id: number, text: string, completed: boolean}>>([]);
+  const [tasks, setTasks] = useState([]);
 
   const addTask = () => {
     if (newTask.trim()) {
@@ -15,13 +15,13 @@ const ToDo = () => {
     }
   };
 
-  const toggleTask = (id: number) => {
+  const toggleTask = (id) => {
     setTasks(tasks.map(task => 
       task.id === id ? { ...task, completed: !task.completed } : task
     ));
   };
 
-  const deleteTask = (id: number) => {
+  const deleteTask = (id) => {
     setTasks(tasks.filter(task => task.id !== id));
   };
 
@@ -29,7 +29,6 @@ const ToDo = () => {
     <div className="min-h-screen warm-gradient">
       <div className="max-w-2xl mx-auto px-4 py-16">
         <div className="glass-effect rounded-3xl p-12">
-          {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
               <Sparkles className="h-8 w-8 text-[hsl(var(--accent-coral))] mr-3" />
@@ -44,7 +43,6 @@ const ToDo = () => {
             </p>
           </div>
 
-          {/* Add Task Input */}
           <div className="flex space-x-3 mb-8">
             <Input
               placeholder="Add a delightful task..."
@@ -61,7 +59,6 @@ const ToDo = () => {
             </Button>
           </div>
 
-          {/* Empty State */}
           {tasks.length === 0 && (
             <div className="text-center py-12">
               <p className="text-[hsl(var(--sage-light))] italic text-lg">
@@ -70,7 +67,6 @@ const ToDo = () => {
             </div>
           )}
 
-          {/* Tasks List */}
           {tasks.length > 0 && (
             <div className="space-y-3">
               {tasks.map((task) => (
