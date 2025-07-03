@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 /* Modern cool color scheme */
-
 @layer base {
   :root {
     --background: 220 14% 96%;
@@ -37,7 +36,7 @@
 
     --radius: 0.75rem;
 
-    /* Updated cool color palette */
+    /* Updated cool color palette with proper HSL values */
     --warm-bg: 210 40% 96%;
     --warm-light: 214 32% 98%;
     --warm-medium: 210 22% 89%;
@@ -51,32 +50,23 @@
   .dark {
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;
-
     --card: 224 71% 4%;
     --card-foreground: 213 31% 91%;
-
     --popover: 224 71% 4%;
     --popover-foreground: 213 31% 91%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222 84% 5%;
-
     --secondary: 215 28% 17%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 215 28% 17%;
     --muted-foreground: 217 11% 65%;
-
     --accent: 215 28% 17%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 215 28% 17%;
     --input: 215 28% 17%;
     --ring: 216 34% 17%;
-
     --radius: 0.75rem;
   }
 }
@@ -87,7 +77,8 @@
   }
 
   body {
-    @apply bg-[hsl(var(--warm-bg))] text-[hsl(var(--sage-text))];
+    background: linear-gradient(135deg, hsl(214, 32%, 98%) 0%, hsl(210, 40%, 96%) 50%, hsl(210, 22%, 89%) 100%);
+    color: hsl(215, 25%, 27%);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
@@ -101,7 +92,7 @@
 
 @layer utilities {
   .warm-gradient {
-    background: linear-gradient(135deg, hsl(var(--warm-light)) 0%, hsl(var(--warm-bg)) 50%, hsl(var(--warm-medium)) 100%);
+    background: linear-gradient(135deg, hsl(214, 32%, 98%) 0%, hsl(210, 40%, 96%) 50%, hsl(210, 22%, 89%) 100%);
   }
   
   .glass-effect {
@@ -123,18 +114,28 @@
 
 @layer components {
   .btn-coral {
-    @apply bg-[hsl(var(--accent-coral))] hover:bg-[hsl(var(--accent-coral))]/90 text-white;
+    background-color: hsl(195, 85%, 65%);
+    color: white;
+  }
+  
+  .btn-coral:hover {
+    background-color: hsl(195, 85%, 55%);
   }
   
   .btn-teal {
-    @apply bg-[hsl(var(--accent-teal))] hover:bg-[hsl(var(--accent-teal))]/90 text-white;
+    background-color: hsl(175, 70%, 45%);
+    color: white;
+  }
+  
+  .btn-teal:hover {
+    background-color: hsl(175, 70%, 35%);
   }
   
   .text-sage {
-    @apply text-[hsl(var(--sage-text))];
+    color: hsl(215, 25%, 27%);
   }
   
   .text-sage-light {
-    @apply text-[hsl(var(--sage-light))];
+    color: hsl(215, 20%, 40%);
   }
 }
